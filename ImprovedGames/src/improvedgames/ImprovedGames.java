@@ -158,6 +158,10 @@ public class ImprovedGames
             new Minesweeper().SetUp(frame);
         });
         options.add(MINE);
+        JButton TET = new JButton("Tetris");
+        TET.addActionListener((ActionEvent e) -> {
+            new Tetris().Play(frame);
+        });
         frame.pack();
     }
 }
