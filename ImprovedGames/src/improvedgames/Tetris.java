@@ -5,6 +5,7 @@ Apr 16, 2018
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -97,8 +98,12 @@ public class Tetris
         score.setText(Integer.toString(Score));
         
         
-        //Board
+        //Board of 10w and 20h
         JPanel Board = new JPanel();
+        
+        
+        //Pause Button
+        JButton Pause = new JButton();
     }
 
 }
