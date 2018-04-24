@@ -162,6 +162,7 @@ public class ImprovedGames
         TET.addActionListener((ActionEvent e) -> {
             new Tetris().Play(frame);
         });
+        options.add(TET);
         frame.pack();
     }
 }
