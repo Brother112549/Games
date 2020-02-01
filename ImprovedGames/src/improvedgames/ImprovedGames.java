@@ -6,6 +6,7 @@ import java.awt.AWTEvent;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -50,6 +51,7 @@ public class ImprovedGames
         //set up menubar for jframe
         JMenuBar Menu = new JMenuBar();
         frame.setJMenuBar(Menu);
+        
         JMenu File = new JMenu("File");
         Menu.add(File);
         JMenuItem Home = new JMenuItem("Home");
@@ -117,6 +119,56 @@ public class ImprovedGames
         Close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
         File.add(Close);
         
+        JMenu Help = new JMenu("Help");
+        Menu.add(Help);
+        JMenu Controls = new JMenu("Controls");
+        Help.add(Controls);
+        JMenuItem Tetris = new JMenuItem("Tetris");
+        Tetris.addActionListener((ActionEvent e) -> {
+            //<editor-fold defaultstate="collapsed" desc="Tetris Controls">
+            JDialog tcontrol = new JDialog();
+            tcontrol.setTitle("Tetris Controls");
+            tcontrol.setLayout(new GridBagLayout());
+            GridBagConstraints c = new GridBagConstraints();
+            c.insets = new Insets(10,10,0,10);
+            c.gridx = 0;
+            c.gridy = 0;
+            c.gridwidth = 2;
+            JLabel top = new JLabel("TETRIS Controls");
+            tcontrol.add(top, c);
+            top.setFont(new Font("Arial",Font.BOLD,40));
+            c.gridwidth = 1;
+            c.gridy = 1;
+            tcontrol.add(new JLabel("Shift Left: "), c);
+            c.gridx = 1;
+            tcontrol.add(new JLabel("Left Arrow Key"), c);
+            c.gridx = 0;
+            c.gridy = 2;
+            tcontrol.add(new JLabel("Shift Right: "), c);
+            c.gridx = 1;
+            tcontrol.add(new JLabel("Right Arrow Key"), c);
+            c.gridx = 0;
+            c.gridy = 3;
+            tcontrol.add(new JLabel("Rotate Clockwise: "), c);
+            c.gridx = 1;
+            tcontrol.add(new JLabel("Up Arrow Key"), c);
+            c.gridx = 0;
+            c.gridy = 4;
+            tcontrol.add(new JLabel("Rotate Counter-Clockwise: "), c);
+            c.gridx = 1;
+            tcontrol.add(new JLabel("Down Arrow Key"), c);
+            c.gridx = 0;
+            c.gridy = 5;
+            tcontrol.add(new JLabel("Drop faster: "), c);
+            c.gridx = 1;
+            tcontrol.add(new JLabel("Spacebar"), c);
+            tcontrol.pack();
+            tcontrol.setVisible(true);
+            tcontrol.setResizable(false);
+            tcontrol.setLocationRelativeTo(frame);//</editor-fold>
+        });
+        Controls.add(Tetris);
+        
         return frame;
     }
 
@@ -158,6 +210,11 @@ public class ImprovedGames
             new Minesweeper().SetUp(frame);
         });
         options.add(MINE);
+        JButton TET = new JButton("Tetris");
+        TET.addActionListener((ActionEvent e) -> {
+            new Tetris().Play(frame);
+        });
+        options.add(TET);
         frame.pack();
     }
 }

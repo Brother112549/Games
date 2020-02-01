@@ -160,7 +160,26 @@ public class Solitaire
                 c.gridwidth = 4;
                 Handle.add(Hand, c);
                 Handle.setVisible(true);
-
+                
+                //Pause Button
+                final JButton Pause = new JButton("Pause");
+                if(!time.isRunning()){
+                    Pause.setText("Resume");
+                }
+                c.fill = GridBagConstraints.NONE;
+                c.gridy = 5;
+                c.anchor = GridBagConstraints.CENTER;
+                Handle.add(Pause, c);
+                Pause.addActionListener((ActionEvent g) -> {
+                    if(time.isRunning()){
+                        time.stop();
+                        Pause.setText("Resume");
+                    }else{
+                        time.start();
+                        Pause.setText("Pause");
+                    }
+                });
+                
                 frame.setContentPane(Handle);
                 frame.pack();
             }else{

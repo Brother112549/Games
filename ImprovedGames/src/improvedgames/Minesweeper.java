@@ -45,10 +45,6 @@ public class Minesweeper
         
     }
     
-    public static void main(String[] args){
-        new Minesweeper().SetUp(new JFrame());
-    }
-    
     public void SetUp(JFrame frame){
         frame.setContentPane(new JPanel());
         height = 0;
@@ -149,8 +145,7 @@ public class Minesweeper
         Hc.weightx = 1;
         Hc.gridx = 0;
         Hc.gridy = 0;
-//        BmBs = new JLabel("Bombs Left: " + numbmbs);
-        BmBs = new JLabel("BL: " + numbmbs + ", OL: " + ((height*width)-numRevd));
+        BmBs = new JLabel("Mines: " + numbmbs + ", Revealed: " + numRevd);
         Head.add(BmBs, Hc);
         Hc.anchor = GridBagConstraints.LINE_END;
         Hc.gridx = 2;
@@ -349,7 +344,7 @@ public class Minesweeper
         private void setFlag() throws IOException {
             isFlaged = true;
             numbmbs --;
-            BmBs.setText("BL: " + numbmbs + ", OL: " + ((height*width)-numRevd));
+            BmBs.setText("Mines: " + numbmbs + ", Revealed: " + numRevd);
             buton.setText(null);
             Image image = (ImageIO.read(getClass().getResource("/improvedgames/Images/Minesweeper Flag.jpg")));
             buton.setIcon(new ImageIcon(image.getScaledInstance(40, 40, Image.SCALE_DEFAULT)));                                                //sets Flag image on Cell
@@ -358,7 +353,7 @@ public class Minesweeper
         private void unFlag(){
             isFlaged = false;
             numbmbs ++;
-            BmBs.setText("BL: " + numbmbs + ", OL: " + ((height*width)-numRevd));
+            BmBs.setText("Mines: " + numbmbs + ", Revealed: " + numRevd);
             buton.setIcon(null);
             buton.setText("x");
         }
@@ -368,6 +363,7 @@ public class Minesweeper
             buton.setBackground(Color.LIGHT_GRAY);
             isRevled = true;
             numRevd ++;
+            BmBs.setText("Mines: " + numbmbs + ", Revealed: " + numRevd);
             for(int u = (Hpos - 1); u <= (Hpos + 1); u++){
                 for(int s = (Wpos - 1); s <= (Wpos + 1); s++){
                     if(u != -1 && u != height && s != -1 && s != width){
