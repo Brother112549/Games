@@ -46,7 +46,7 @@ public class Solitaire
         OneHandedHand();
     }
     
-    public void OneHandedHand(){
+    private void OneHandedHand(){
         ActionListener Listen = (ActionEvent e) -> {
             if(a<Deck.size()){
                 if(Active[0].Rank==Active[3].Rank){
@@ -193,7 +193,7 @@ public class Solitaire
         time.start();
     }
     
-    public void End(JFrame frame, boolean win){
+    private void End(JFrame frame, boolean win){
         //ending screen
         JPanel options = new JPanel();
         options.setLayout(new GridBagLayout());

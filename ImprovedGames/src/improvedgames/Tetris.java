@@ -99,7 +99,7 @@ public class Tetris
         
     }
 
-    void Play(JFrame jframe) {
+    public void Play(JFrame jframe) {
         frame = jframe;
         JPanel pane = new JPanel();
         frame.setContentPane(new JLayeredPane());
@@ -343,7 +343,7 @@ public class Tetris
         //Display next shape
         for(int a = 0; a < 4; a++){
             for(int b = 0; b < 4; b++){
-                if(Options[nxt][a][b]=="x"){
+                if("x".equals(Options[nxt][a][b])){
                     next.get(a)[b].setBackground(nxtcolor);
                 }
             }

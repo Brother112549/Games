@@ -2,6 +2,9 @@ package improvedgames;
 /*Created By Kelby
 Jan 28, 2018
 */
+
+//TO DO: add something for losing
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,7 +23,19 @@ import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.util.Random;
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 public class Minesweeper 
@@ -31,11 +46,11 @@ public class Minesweeper
     private int width;
     private int bombs;
     //active variables when playing
-    private JLabel BmBs;
-    private TimerLabel Time;
-    private int numclks;
-    private int numbmbs;
-    private int numRevd;
+    private JLabel BmBs;        //label for numbmbs and numRevd
+    private TimerLabel Time;    //time taken to solve
+    private int numclks;        //used to ensure valid first action only
+    private int numbmbs;        //number of unflagged bombs
+    private int numRevd;        //number of revealed cells
     private Cell[][] Cells;
     private boolean win = true;
     JFrame frame;
@@ -297,7 +312,7 @@ public class Minesweeper
         private JButton getButton(){
             buton = new JButton("x");
             buton.setBackground(Color.GRAY);
-            Listen = new MouseListener() {            //Mouse Listener implementation
+            Listen = new MouseListener() {      //Mouse Listener implementation
                 @Override public void mousePressed(MouseEvent e) {}
                 @Override public void mouseReleased(MouseEvent e) {}
                 @Override public void mouseEntered(MouseEvent e) {}
@@ -319,7 +334,6 @@ public class Minesweeper
                             RevealedMine();
                         }else{
                             Reveal();
-                            numclks ++;
                         }
                         CheckWin();
                     }
@@ -337,7 +351,7 @@ public class Minesweeper
                     }
                 }
             };
-            buton.addMouseListener(Listen);                                                     //End Mouse Listener Implementation
+            buton.addMouseListener(Listen);
             return buton;
         }
         

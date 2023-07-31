@@ -4,13 +4,6 @@ Jan 29, 2018
 */
 import java.util.ArrayList;
 import java.util.Collections;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 public class DeckOfCards 
 {
 

@@ -178,7 +178,6 @@ public class Blackjack
     }
     
     private void checkSplit(JPanel options, GridBagConstraints c){
-        JPanel Options = options;
         GridBagConstraints C = c;
         JLabel OptionsL = new JLabel("Would you like to split your hand?");
         JButton OP1 = new JButton("Yes");
@@ -194,10 +193,13 @@ public class Blackjack
         options.add(OP2, c);
 
         OP1.addActionListener((ActionEvent e) -> {
-            doSplit(Options, C);
+            doSplit(options, C);
         });
         OP2.addActionListener((ActionEvent e) -> {
-            noSplit(Options, C);
+            options.remove(4);
+            options.remove(4);
+            options.remove(4);
+            noSplit(options, C);
         });
         frame.setContentPane(options);
         frame.pack();

@@ -42,7 +42,7 @@ class Card
     }
     
     public String getRank(){
-        String rank = null;
+        String rank;
         if(Rank==1){
             rank = "Ace of ";
         }else if(Rank==11){
@@ -90,7 +90,7 @@ class Card
             cardColor = Color.RED;
         }
         
-        String rank = null;
+        String rank;
         if(Rank==1){
             rank = "A";
         }else if(Rank==11){

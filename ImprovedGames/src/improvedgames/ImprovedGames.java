@@ -17,11 +17,22 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
+import javax.swing.UnsupportedLookAndFeelException;
 public class ImprovedGames 
 {
-    public static void main(String[] args) 
-    {
+    public static void main(String[] args){
         //set up JFrame basics
         JFrame frame = new JFrame();
         frame.setLocationRelativeTo(null);
@@ -82,7 +93,7 @@ public class ImprovedGames
                     Object source = event.getSource();
                     if (source instanceof Component) {
                         Component comp = (Component) source;
-                        Window win = null;
+                        Window win;
                         if (comp instanceof Window) {
                             win = (Window) comp;
                         } else {
@@ -111,6 +122,19 @@ public class ImprovedGames
             //</editor-fold>
         });
         File.add(About);
+        JMenu Look = new JMenu("Change Look");
+        File.add(Look);
+        for(javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()){
+            JMenuItem look = new JMenuItem(info.getName());
+            look.addActionListener((ActionEvent e) -> {
+                try {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException  | UnsupportedLookAndFeelException ex) {
+                }
+                SwingUtilities.updateComponentTreeUI(frame);
+            });
+            Look.add(look);
+        }
         File.add(new JSeparator());
         JMenuItem Close = new JMenuItem("Close");
         Close.addActionListener((ActionEvent e) -> {
@@ -172,7 +196,7 @@ public class ImprovedGames
         return frame;
     }
 
-    public void StartScreen(JFrame frame) {
+    public void StartScreen(JFrame frame){
         frame.setTitle("Games");
         JPanel message = new JPanel();
         frame.setContentPane(message);
@@ -215,6 +239,16 @@ public class ImprovedGames
             new Tetris().Play(frame);
         });
         options.add(TET);
+        JButton NON = new JButton("Nonograms");
+        NON.addActionListener((ActionEvent e) -> {
+            new Nonogram().Mode(frame);
+        });
+        options.add(NON);
+        JButton SUD = new JButton("Sudoku");
+        SUD.addActionListener((ActionEvent e) -> {
+            new Sudoku().Setup(frame);
+        });
+        options.add(SUD);
         frame.pack();
     }
 }
